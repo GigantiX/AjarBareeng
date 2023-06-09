@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "426018635939",
+    "project_id": "ajarbareeng",
+    "storage_bucket": "ajarbareeng.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426018635939:android:47ec3f782ac551323f3f16",
+        "android_client_info": {
+          "package_name": "com.example.aol_se"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426018635939-le6lv6vnpu7lhb2k772orsp3jfolibn8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9i_4IVkKneSBJk3--82rpa3QZrqePs_E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "426018635939-le6lv6vnpu7lhb2k772orsp3jfolibn8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
