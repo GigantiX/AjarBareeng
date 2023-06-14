@@ -3,8 +3,11 @@ package com.example.aol_se;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth auth;
     DatabaseReference reference;
     ActivityRegisterBinding binding;
+    Dialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
         });
 
+        initDialog();
         binding.registerBtn.setOnClickListener(view -> {
             String str_username = binding.nameEdt.getEditText().getText().toString();
             String str_email = binding.emailEdt.getEditText().getText().toString();
@@ -56,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(this, "Please enter the same password", Toast.LENGTH_SHORT).show();
                 } else {
 //                    Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
-                    register(str_username, str_email, str_password, Integer.parseInt(number));
+                    register(str_username, str_email, str_password, number);
                 }
             }else{
                 Toast.makeText(this, "All Field must be filled!", Toast.LENGTH_SHORT).show();
@@ -65,13 +70,15 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void register(String name, String email, String password,
-                          int number) {
+                          String number) {
 
+        progressDialog.show();
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            progressDialog.dismiss();
                             FirebaseUser firebaseUser = auth.getCurrentUser();
                             String userId = firebaseUser.getUid();
 
@@ -84,24 +91,33 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("name", name.toLowerCase());
                             hashMap.put("email", email.toLowerCase());
                             hashMap.put("password", password);
-                            hashMap.put("number", (int) number);
+                            hashMap.put("number", number);
 
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
 //                                    progressPopDialog.dismiss();
                                     Toast.makeText(RegisterActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                                    Intent intent = new Intent(RegisterActivity.this, Category.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(intent);
                                 }
                             });
                         } else {
-//                            progressPopDialog.dismiss();
+                            progressDialog.dismiss();
                             Toast.makeText(RegisterActivity.this, "Error", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+
+    }
+
+    private void initDialog(){
+        progressDialog = new Dialog(this);
+        progressDialog.setContentView(R.layout.progress_dialog);
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        progressDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        progressDialog.setCancelable(false);
 
     }
 }

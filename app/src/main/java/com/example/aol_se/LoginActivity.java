@@ -3,8 +3,11 @@ package com.example.aol_se;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -27,14 +30,14 @@ public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
     FirebaseAuth auth;
     FirebaseUser firebaseUser;
-
+    Dialog progressDialog;
     @Override
     protected void onStart() {
         super.onStart();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if (firebaseUser != null){
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            startActivity(new Intent(LoginActivity.this, NavbarActivity.class));
             finish();
         }
     }
@@ -50,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        initDialog();
         binding.loginBtn.setOnClickListener(view -> {
             String str_email = binding.emailEdt.getEditText().getText().toString();
             String str_password = binding.passEdt.getEditText().getText().toString();
@@ -67,12 +71,13 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void login(String email, String password) {
 
-
+        progressDialog.show();
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            progressDialog.dismiss();
                             DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
                                     .child("Users").child(auth.getCurrentUser().getUid());
 
@@ -80,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 //                                    progressPopDialog.dismiss();
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, NavbarActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     finish();
@@ -96,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
 //                            Toast.makeText(LoginActivity.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
 
                         } else {
-
+                            progressDialog.dismiss();
                             try {
                                 throw task.getException();
                             }
@@ -120,6 +125,15 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 });
+
+    }
+
+    private void initDialog(){
+        progressDialog = new Dialog(this);
+        progressDialog.setContentView(R.layout.progress_dialog);
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        progressDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        progressDialog.setCancelable(false);
 
     }
 
