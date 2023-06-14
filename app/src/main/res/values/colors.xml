@@ -17,4 +17,5 @@
     <color name="kuning1">#FFEAC250</color>
     <color name="merah">#FFF14C4C</color>
     <color name="biru">#FF44A2F8</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

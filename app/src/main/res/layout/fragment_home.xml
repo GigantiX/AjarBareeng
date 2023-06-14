@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/soft_purple"
     tools:context=".HomeFragment">
 
@@ -36,18 +37,62 @@
                     android:text="Chris Evans"/>
             </LinearLayout>
 
-            <ImageView
+            <androidx.cardview.widget.CardView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/profile_pic"
                 android:scaleType="centerCrop"
-
+                app:cardCornerRadius="30dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                />
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/profile_pic"/>
+            </androidx.cardview.widget.CardView>
         </RelativeLayout>
-
-
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:cardCornerRadius="10dp"
+            android:backgroundTint="#2C2C2C">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="13dp"
+                android:orientation="vertical"
+                android:layout_marginTop="13dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent">
+                    <TextView
+                        android:layout_width="190dp"
+                        android:layout_height="wrap_content"
+                        android:text="Terhubung Langsung Dengan Mentor Terbaik"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AJARBARENG"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+                </RelativeLayout>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"/>
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Daftar dan bertemu dengan lebih dari 20.535+ mentor untuk privat ataupun untuk umum"
+                    android:textColor="@color/white"
+                    android:textSize="30px"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
 </FrameLayout>
