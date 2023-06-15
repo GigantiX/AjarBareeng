@@ -92,8 +92,38 @@
                     android:text="Daftar dan bertemu dengan lebih dari 20.535+ mentor untuk privat ataupun untuk umum"
                     android:textColor="@color/white"
                     android:textSize="30px"/>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"/>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    app:cardCornerRadius="30dp">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingStart="10dp"
+                        android:hint="Search"
+                        android:drawableStart="@drawable/round_search_24"
+                        android:background="@color/transparent"
+                        android:drawableTint="@color/abu1"/>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+        <include layout="@layout/component_pay"/>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gabung &amp; Tingkatin Minatmu"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
 </FrameLayout>
