@@ -29,6 +29,7 @@
                     android:textSize="15dp"
                     android:text="Welcome"/>
                 <TextView
+                    android:id="@+id/usernameTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
