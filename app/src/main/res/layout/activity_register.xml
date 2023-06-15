@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity"
-    android:background="@color/purple_500"
+    android:background="@color/soft_purple"
     android:padding="46dp">
 
     <com.google.android.material.card.MaterialCardView
@@ -174,7 +174,7 @@
             android:id="@+id/registerBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="@color/purple_500"
             android:text="Register"
             android:textAllCaps="false"
             android:textColor="@color/white"
@@ -184,12 +184,11 @@
             android:id="@+id/loginBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/purple_500"
+            android:backgroundTint="@color/blue"
             android:text="Go to Login Page"
             android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp"
+            android:textColor="@color/white"
+
             tools:layout_editor_absoluteX="46dp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -5,8 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:padding="46dp"
-    android:background="@color/purple_500">
+    android:paddingHorizontal="36dp"
+    android:paddingVertical="20dp"
+    android:background="@color/soft_purple">
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="280dp"
+        android:layout_height="218dp"
+        android:src="@drawable/gambar3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
@@ -14,9 +24,8 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/center"
-        app:layout_constraintTop_toTopOf="@+id/center"
-        tools:layout_editor_absoluteX="46dp">
+        android:layout_marginTop="55dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -72,8 +81,8 @@
                 app:boxStrokeColor="@color/black"
                 app:hintTextColor="@color/black"
                 app:passwordToggleEnabled="true"
-                app:startIconDrawable="@drawable/outline_password_24"
                 app:passwordToggleTint="@color/black"
+                app:startIconDrawable="@drawable/outline_password_24"
                 app:startIconTint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -108,7 +117,7 @@
             android:id="@+id/loginBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="@color/purple_500"
             android:text="Login"
             android:textAllCaps="false"
             android:textColor="@color/white"
@@ -118,12 +127,11 @@
             android:id="@+id/registerBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/purple_500"
+            android:backgroundTint="@color/blue"
             android:text="Go to Register Page"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp"
+
             tools:layout_editor_absoluteX="46dp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
