@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class Login extends AppCompatActivity {
-    private Button toPhoNum;
+    private Button toPhoNum, register;
 //bgfgfdthgftg
     @SuppressLint("MissingInflatedId")
     @Override
@@ -17,11 +17,19 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        toPhoNum = findViewById(R.id.login_phoNum);
+        toPhoNum = findViewById(R.id.login_login);
         toPhoNum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Login.this, PhoneNumber.class));
+                startActivity(new Intent(Login.this, LoginActivity.class));
+            }
+        });
+
+        register = findViewById(R.id.login_google);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Login.this, RegisterActivity.class));
             }
         });
     }
